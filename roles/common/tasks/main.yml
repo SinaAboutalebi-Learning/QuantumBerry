@@ -13,3 +13,11 @@
     - btop
     - curl
     - wget
+
+- name: Create Services Directory
+  ansible.builtin.file:
+    path: /home/{{ username }}/services
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
