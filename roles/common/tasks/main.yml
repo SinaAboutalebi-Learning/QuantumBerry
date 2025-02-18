@@ -9,5 +9,7 @@
   loop:
     - vim
     - git
-    - wget
+    - htop
+    - btop
     - curl
+    - wget
