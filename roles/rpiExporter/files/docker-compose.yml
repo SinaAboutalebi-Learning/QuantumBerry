@@ -1,0 +1,9 @@
+version: "3"
+services:
+  rpi-exporter:
+    container_name: rpi-exporter
+    image: d3vilh/rpi_exporter-arm64:latest
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "9110:9110/tcp"

@@ -1,0 +1,20 @@
+- name: Create RpiExporter Service Directory
+  ansible.builtin.file:
+    path: /home/{{ username }}/services/rpi-exporter
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+
+- name: Create Docker Compose File for Rpi Exporeter
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: /home/{{ username }}/services/rpi-exporter/docker-compose.yml
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0644"
+
+- name: Start rpi_exporter Service using Docker Compose module
+  community.docker.docker_compose:
+    project_src: /home/{{ username }}/services/rpi-exporter
+    state: present
