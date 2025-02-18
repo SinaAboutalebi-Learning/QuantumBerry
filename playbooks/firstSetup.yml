@@ -1,5 +1,6 @@
 - name: Setup and Initialize QuantumBerry
   hosts: quantumberry
+  gather_facts: true
   become: true
 
   pre_tasks:
