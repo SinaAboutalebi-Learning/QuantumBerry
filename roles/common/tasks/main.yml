@@ -1,32 +1,36 @@
-- name: Update apt repository index
+- name: Update apt cache
   ansible.builtin.apt:
     update_cache: true
+    cache_valid_time: 3600
 
-- name: Setup and install basic packages
-  ansible.builtin.package:
-    name: "{{ item }}"
+- name: Upgrade all installed packages
+  ansible.builtin.apt:
+    upgrade: true
+
+- name: Install basic packages
+  ansible.builtin.apt:
+    name:
+      - zsh
+      - vim
+      - git
+      - htop
+      - btop
+      - curl
+      - wget
+      - bash-completion
     state: present
-  loop:
-    - zsh
-    - vim
-    - git
-    - htop
-    - btop
-    - curl
-    - wget
-    - bash-completion
 
-- name: Install Oh My Zsh using official installer
+- name: Install Oh My Zsh using official installer (unattended)
   ansible.builtin.shell: |
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   args:
-    creates: /{{ ansible_user }}/.oh-my-zsh
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
   become: true
   become_user: "{{ ansible_user }}"
 
-- name: Create Services Directory
+- name: Ensure services directory exists
   ansible.builtin.file:
-    path: /{{ ansible_user }}/services
+    path: "{{ ansible_env.HOME }}/services"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
