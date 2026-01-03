@@ -7,16 +7,26 @@
     name: "{{ item }}"
     state: present
   loop:
+    - zsh
     - vim
     - git
     - htop
     - btop
     - curl
     - wget
+    - bash-completion
+
+- name: Install Oh My Zsh using official installer
+  ansible.builtin.shell: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: /{{ ansible_user }}/.oh-my-zsh
+  become: true
+  become_user: "{{ ansible_user }}"
 
 - name: Create Services Directory
   ansible.builtin.file:
-    path: /home/{{ ansible_user }}/services
+    path: /{{ ansible_user }}/services
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
