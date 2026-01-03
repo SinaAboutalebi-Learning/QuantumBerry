@@ -22,5 +22,5 @@
       when: docker_not_installed | bool
       tags: base
 
-    - role: rpiExporter
+    - role: exporters
       tags: services
