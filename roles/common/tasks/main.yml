@@ -28,6 +28,11 @@
   become: true
   become_user: "{{ ansible_user }}"
 
+- name: Set Zsh as the default shell for the user
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/zsh
+
 - name: Ensure services directory exists
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/services"
