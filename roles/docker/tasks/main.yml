@@ -1,8 +1,9 @@
-- name: Download Docker installation script
+- name: Download Docker installation script (unsafe TLS)
   ansible.builtin.get_url:
     url: https://get.docker.com
     dest: /tmp/install-docker.sh
     mode: "0755"
+    validate_certs: false
 
 - name: Run the installation script
   ansible.builtin.command:
