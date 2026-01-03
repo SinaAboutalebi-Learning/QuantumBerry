@@ -1,4 +1,3 @@
-version: "3"
 services:
   rpi-exporter:
     container_name: rpi-exporter
@@ -7,3 +6,11 @@ services:
     privileged: true
     ports:
       - "9110:9110/tcp"
+    deploy:
+      resources:
+        limits:
+          cpus: 0.5
+          memory: 100M
+        reservations:
+          cpus: 0.25
+          memory: 50M

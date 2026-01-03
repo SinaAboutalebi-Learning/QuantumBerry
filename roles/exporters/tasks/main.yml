@@ -1,0 +1,20 @@
+- name: Create Exporters Service Directory
+  ansible.builtin.file:
+    path: /{{ ansible_user }}/services/exporters
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+
+- name: Create Docker Compose File for Exporters
+  ansible.builtin.copy:
+    src: docker-compose.yml
+    dest: /{{ ansible_user }}/services/exporters/docker-compose.yml
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+
+- name: Start exporters Service using Docker Compose module
+  community.docker.docker_compose_v2:
+    project_src: /{{ ansible_user }}/services/exporters
+    state: present
