@@ -1,0 +1,11 @@
+galaxy_info:
+  role_name: bluetooth_audio_receiver
+  author: sina
+  description: Bluetooth A2DP audio receiver for Raspberry Pi
+  license: MIT
+  min_ansible_version: "2.12"
+  platforms:
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm

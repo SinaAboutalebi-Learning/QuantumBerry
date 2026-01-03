@@ -1,0 +1,11 @@
+- name: Restart bluetooth
+  ansible.builtin.systemd:
+    name: bluetooth
+    state: restarted
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Reload udev
+  ansible.builtin.command: udevadm control --reload-rules
