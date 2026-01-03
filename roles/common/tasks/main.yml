@@ -13,6 +13,7 @@
       - zsh
       - vim
       - git
+      - lsd
       - htop
       - btop
       - curl
