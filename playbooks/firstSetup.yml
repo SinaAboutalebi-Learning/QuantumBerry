@@ -24,3 +24,6 @@
 
     - role: exporters
       tags: services
+
+    - role: bluetooth_audio_receiver
+      tags: services
